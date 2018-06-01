@@ -1,11 +1,28 @@
 plsql.execute <<-SQL
-# Codigo va acá
-SQL
-
-plsql.execute <<-SQL
-# Codigo va acá
-SQL
-
-plsql.execute <<-SQL
-# Codigo va acá
+CREATE OR REPLACE PROCEDURE CALCULAR_SIMULACION 
+(tasa_efectiva_anual IN DECIMAL,
+ numero_total_cuotas IN DECIMAL,
+ valor_prestamo IN DECIMAL
+)
+AS
+BEGIN
+   DECLARE numero_cuota INTEGER;
+   DECLARE cuota_mensual DECIMAL;
+   DECLARE abono_capital DECIMAL;
+   DECLARE abono_interes DECIMAL;
+   DECLARE saldo DECIMAL;
+   DECLARE tasa_nominal_mensual DECIMAL;
+   
+   TRUNCATE TABLE amortizacion; --- Borrar Tabla
+   
+   set tasa_nominal_mensual = POWER((1 + (tasa_efectiva_anual)), (30 / 360) - 1);
+   set cuota_mensual = ((tasa_nominal_mensual)*valor_prestamo)/power((1 - (1 + (tasa_nominal_mensual)),-total_cuotas);
+   set abono_interes = tasa_nominal_mensual * saldo_actual
+   set abono_capital = cuota_mensual - abono_interes
+   
+    INSERT INTO amortizacion (numero_cuota,cuota_mensual,abono_capital,abono_interes,saldo) 
+    VALUES (numero_cuota,cuota_mensual,abono_capital,abono_interes,saldo)
+   
+  
+END
 SQL
